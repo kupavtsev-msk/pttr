@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<meta name="viewport" content="width=1920">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!--color picker-->
+    <link rel="stylesheet" href="colorpicker/css/colorpicker.css">
+    <script src="colorpicker/js/colorpicker.js"></script>
+    <!--color picker-->
+    <!--jcanvas-->
+    <script src="js/jcanvas.js"></script>
+    <!--jcanvas-->
+    <!--jquery ui-->
+    <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.css">
+    <script src="jquery-ui-1.12.1/jquery-ui.js"></script>
+    <!--jquery ui-->
+    <script src="js/js.js"></script>
+    <link rel="stylesheet" href="css/canvas.css">
+    <script src="js/canvas.js"></script>
+
+</head>
+<body>
+<!--SVG filter-->
+<svg style="height: 0; width: 0; position: absolute; z-index: -999999999;">
+    <filter id="dropshadow" height="130%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="15"/> <!-- stdDeviation is how much to blur -->
+        <feOffset dx="0" dy="0" result="offsetblur"/> <!-- how much to offset -->
+        <feComponentTransfer>
+            <feFuncA type="linear" slope="1"/> <!-- slope is the opacity of the shadow -->
+        </feComponentTransfer>
+        <feMerge>
+            <feMergeNode/> <!-- this contains the offset blurred image -->
+            <feMergeNode in="SourceGraphic"/> <!-- this contains the element that the filter is applied to -->
+        </feMerge>
+    </filter>
+</svg>
+<header>
+    <ul class="top-nav-bar">
+        <li><a href="#"><img alt="logo" src="/img/logo.png"></a></li>
+        <li>Сумма 1500 руб.</li>
+        <li>Количество: 165 м</li>
+        <li><a href="#">Выбрать материал <i class="fa fa-caret-down" aria-hidden="true"></i></a></li>
+        <li>Размер <input type="text" class="canvas-sizes-view" placeholder="" name="canvas-sizes-view" value="19"> см</li>
+        <li><a href="#" class="green-button">ЗАКАЗАТЬ</a></li>
+        <li><a href="#" class="grey-button">Поделиться</a></li>
+        <li><a href="#" class="grey-button"><i class="fa fa-user" aria-hidden="true"></i> Войти</a></li>
+        <li></li>
+    </ul>
+    <ul class="left-nav-bar">
+        <li><a href="#" id="clearCanvas" title="Новая"><img alt="Новая" src="/img/left-menu-icons/007-edit.png"><span>Новая</span></a></li>
+        <li><a href="#submenu-1" title="Элементы"><img alt="Элементы" src="/img/left-menu-icons/001-layers.png"><span>Элементы</span></a></li>
+        <li><a href="#submenu-2" title="Примерить"><img alt="Примерить" src="/img/left-menu-icons/006-user.png"><span>Примерить</span></a></li>
+        <li><a href="#submenu-3" title="Фон"><img alt="Фон" src="/img/left-menu-icons/010-paint-brush.png"><span>Фон</span></a></li>
+        <li><a href="#submenu-4" title="Настройки"><img alt="Настройки" src="/img/left-menu-icons/005-multimedia.png"><span>Настройки</span></a></li>
+        <li><a href="#" title="Помощь"><img alt="Помощь" src="/img/left-menu-icons/009-information.png"><span>Помощь</span></a></li>
+        <li><a href="#" title="Случайно"><img alt="Случайно" src="/img/left-menu-icons/shuffle.png"><span>Случайно</span></a></li>
+    </ul>
+    <ul class="submenu" id="submenu-1">
+        <li class="head">Выберите элементы</li>
+        <li><a href="#submenu-1-1" title="Библиотека"><img alt="Библиотека" src="img/left-menu-icons/submenu-1/icon-1.png"><span>Библиотека</span></a></li>
+        <li><a href="#submenu-1-2" title="Текст"><img alt="Текст" src="img/left-menu-icons/submenu-1/icon-2.png"><span>Текст</span></a></li>
+        <li><a href="#" title="Свой элемент"><img alt="Свой элемент" src="img/left-menu-icons/submenu-1/icon-3.png"><span>Свой элемент</span></a></li>
+    </ul>
+    <ul class="submenu" id="submenu-1-1">
+        <li class="head">Библиотека</li>
+        <li class="search">
+            <form name="library-search">
+                <input type="text" name="name" placeholder="поиск">
+            </form>
+        </li>
+        <li class="icon-class-list">
+            <a href="#" class="head">Соц. сети</a>
+            <div class="icons">
+                <a href="/icons/socials/dribbble.svg" class="icon-point" style="background-image: url(/icons/socials/dribbble.svg);"></a>
+                <a href="/icons/socials/google-plus.svg" class="icon-point" style="background-image: url(/icons/socials/google-plus.svg);"></a>
+                <a href="/icons/socials/myspace.svg" class="icon-point" style="background-image: url(/icons/socials/myspace.svg);"></a>
+                <a href="/icons/socials/skype.svg" class="icon-point" style="background-image: url(/icons/socials/skype.svg);"></a>
+                <a href="/icons/socials/xing.svg" class="icon-point" style="background-image: url(/icons/socials/xing.svg);"></a>
+            </div>
+        </li>
+        <li class="icon-class-list">
+            <a href="#" class="head">Животные</a>
+            <div class="icons">
+                <a href="#" class="icon-point" style="background-image: url(/img/left-menu-icons/submenu-1/submenu-1-1/icon.png);"></a>
+                <a href="#" class="icon-point" style="background-image: url(/img/left-menu-icons/submenu-1/submenu-1-1/icon.png);"></a>
+                <a href="#" class="icon-point" style="background-image: url(/img/left-menu-icons/submenu-1/submenu-1-1/icon.png);"></a>
+                <a href="#" class="icon-point" style="background-image: url(/img/left-menu-icons/submenu-1/submenu-1-1/icon.png);"></a>
+                <a href="#" class="icon-point" style="background-image: url(/img/left-menu-icons/submenu-1/submenu-1-1/icon.png);"></a>
+                <a href="#" class="icon-point" style="background-image: url(/img/left-menu-icons/submenu-1/submenu-1-1/icon.png);"></a>
+            </div>
+        </li>
+    </ul>
+    <ul class="submenu" id="submenu-1-2">
+        <li class="head">Добавить свой текст</li>
+        <li class="search">
+            <form name="append-text">
+                <textarea name="text" required placeholder="Ваш текст"></textarea>
+                <button class="green-button" type="submit">ДОБАВИТЬ</button>
+            </form>
+        </li>
+        <li class="head">Шрифт</li>
+        <li>
+            <style>
+                @font-face {
+                    font-family: "AP Applique Cut";
+                    src: url("/fonts/AP-Aplique/AP-Applique-Cut.ttf");
+                }
+            </style>
+            <a href="#" class="font" style="font-family: 'AP Applique Cut', sans-serif;">AP Applique Cut</a>
+        </li>
+        <li>
+            <style>
+                @font-face {
+                    font-family: "AP Applique Stitched";
+                    src: url("/fonts/AP-Aplique/AP-Applique-Stitched.ttf");
+                }
+            </style>
+            <a href="#" class="font" style="font-family: 'AP Applique Stitched', sans-serif;">AP Applique Stitched</a>
+        </li>
+        <li>
+            <style>
+                @font-face {
+                    font-family: "Verbal Diarrhea";
+                    src: url("/fonts/Verbal-Diarrhea/Verbal-Diarrhea.ttf");
+                }
+            </style>
+            <a href="#" class="font" style="font-family: 'Verbal Diarrhea', sans-serif;">Verbal Diarrhea</a>
+        </li>
+    </ul>
+    <!---->
+    <ul class="submenu" id="submenu-2">
+        <li class="head"><a href="#" class="grey-button">Примерить на себе
+            <span>(распечатать)</span></a>
+        </li>
+        <li class="point">
+            <a href="#" title="Примерять">
+                <div class="head">Платье</div>
+                <img alt="примерять" src="/img/left-menu-icons/submenu-2/1.png">
+            </a>
+        </li>
+        <li class="point">
+            <a href="#" title="Примерять">
+                <div class="head">Обувь</div>
+                <img alt="примерять" src="/img/left-menu-icons/submenu-2/2.png">
+            </a>
+        </li>
+        <li class="point">
+            <a href="#" title="Примерять">
+                <div class="head">Футболка</div>
+                <img alt="примерять" src="/img/left-menu-icons/submenu-2/3.png">
+            </a>
+        </li>
+        <li class="point">
+            <a href="#" title="Примерять">
+                <div class="head">Рюкзак</div>
+                <img alt="примерять" src="/img/left-menu-icons/submenu-2/4.png">
+            </a>
+        </li>
+    </ul>
+    <!---->
+    <ul class="submenu" id="submenu-3">
+        <li class="head">Выберите основной цвет фона</li>
+        <li><div id="area-background"></div></li>
+        <li class="head paliters-header">Палитры</li>
+        <li class="paliters">
+            <ul class="paliters-append">
+            </ul>
+        </li>
+    </ul>
+    <!---->
+    <ul class="submenu" id="submenu-4">
+        <li class="head">Настройки</li>
+        <li class="sett-group">
+            <div class="head">Размеры ячейки</div>
+            <label class="line">
+                <span class="insc">По горизонтали</span>
+                <span class="input"><input type="number" name="gorisontal" min="0" value="15"><span class="unit">см</span></span>
+            </label>
+            <label class="line">
+                <span class="insc">По вертикали</span>
+                <span class="input block"><input type="number" name="vertical" min="0" value="20"><span class="unit">см</span></span>
+            </label>
+            <label class="line">
+                <span class="insc">Сохранить пропорции</span>
+                <span class="input"><input type="checkbox" name="proporcyi"><span class="toggle"></span></span>
+            </label>
+        </li>
+        <li class="sett-group">
+            <div class="head">Другие</div>
+            <label class="line">
+                <span class="insc">Показать сетку</span>
+                <span class="input"><input type="checkbox" name="pokazat_setku"><span class="toggle"></span></span>
+            </label>
+            <label class="line">
+                <span class="insc">Показать линейку</span>
+                <span class="input"><input type="checkbox" name="pokazat_lineyku"><span class="toggle"></span></span>
+            </label>
+        </li>
+    </ul>
+</header>
+<div id="canvas-wrap">
+        <ul class="panel-controls">
+            <li><a href="#" title="Цвет"><div class="butt-icon" style="background-image: url(img/image-controls/1.png);"></div>Цвет</a>
+                <div class="sub svg-color-select">
+                    <div class="top">
+                        <div class="left">
+                            <svg class="left" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 455.731 455.731" style="enable-background:new 0 0 455.731 455.731;" xml:space="preserve">
+                                <g>
+                                    <rect x="0" y="0" style="fill:#ED4989;" width="455.731" height="455.731"/>
+                                    <path style="fill:#FFFFFF;" d="M227.866,55.375c-95.27,0-172.491,77.23-172.491,172.491s77.221,172.491,172.491,172.491
+            c95.261,0,172.491-77.23,172.491-172.491S323.127,55.375,227.866,55.375z M373.376,225.952
+            c-19.721-5.696-40.564-8.751-62.118-8.751c-13.018,0-25.776,1.114-38.184,3.252c-4.025-9.604-8.194-18.795-12.407-27.537
+            c58.92-25.201,80.356-56.53,80.356-56.53l0.009-0.009C360.888,160.905,372.936,192.027,373.376,225.952z M227.866,82.346
+            c37.034,0,70.851,13.836,96.537,36.629l-0.009,0.009c-19.622,22.614-46.8,38.741-75.819,50.232
+            c-28.004-51.993-54.589-82.899-54.589-82.899C204.857,83.72,216.204,82.346,227.866,82.346z M164.849,96.658
+            c0,0,25.444,32.64,53.098,82.935c-66.601,19.146-132.475,18.13-132.475,18.13h-0.009C94.87,153.062,124.761,115.947,164.849,96.658
+            z M82.337,227.866c0-1.276,0.018-2.543,0.045-3.809h0.009c62.235,0.332,110.903-8.212,148.386-20.089
+            c3.872,7.736,7.736,15.777,11.509,24.078c-51.588,16.72-94.956,51.687-122.484,97.292
+            C96.514,299.534,82.337,265.357,82.337,227.866z M227.866,373.385c-33.17,0-63.735-11.096-88.218-29.774
+            c24.491-43.197,64.822-76.232,113.086-91.209c13.8,34.114,25.309,71.57,30.789,109.951
+            C266.382,369.468,247.577,373.385,227.866,373.385z M308.698,348.885c-5.049-37.357-14.447-72.1-25.785-103.293
+            c9.254-1.339,18.723-2.03,28.346-2.03c20.916,0,41.068,3.252,59.98,9.299C364.329,292.823,341.114,327.197,308.698,348.885z"/>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                            </svg>
+                            <div class="buttWrapper">
+                                <a href="#" class="green-button do">ПРИМЕНИТЬ</a>
+                            </div>
+                        </div>
+                        <div class="right change-el-color-picker"></div>
+                    </div>
+                    <ul class="paliters-append"></ul>
+                </div>
+            </li>
+            <li><a href="#" title="Положение"><div class="butt-icon" style="background-image: url(img/image-controls/2.png);"></div>Положение</a>
+                <table class="sub position-info">
+                    <tr><td><img alt="" src="/img/image-controls/2/1.png"></td><td>Позиция по оси X</td><td class="x-position-value">0 мм</td></tr>
+                    <tr><td><img alt="" src="/img/image-controls/2/2.png"></td><td>Позиция по оси Y</td><td class="y-position-value">0 мм</td></tr>
+                    <tr><td><img alt="" src="/img/image-controls/2/3.png"></td><td>Поворот</td><td class="deg-position-value">0 &deg;</td></tr>
+                </table>
+            </li>
+            <li><a href="#" title="Размер"><div class="butt-icon" style="background-image: url(img/image-controls/3.png);"></div>Размер</a>
+                <table class="sub sizes-info">
+                    <tr><td>Ширина</td><td class="width-value">0 мм</td></tr>
+                    <tr><td>Высота</td><td class="height-value">0 мм</td></tr>
+                </table>
+            </li>
+            <li><a href="#" title="Отразить"><div class="butt-icon" style="background-image: url(img/image-controls/4.png);"></div>Отразить</a>
+                <div class="sub reflect-buttons">
+                    <a href="#" data-reflect="horizontal"><img alt="" src="/img/image-controls/4/1.png">По горизонтали</a>
+                    <a href="#" data-reflect="vertical"><img alt="" src="/img/image-controls/4/2.png">По вертикали</a>
+                </div>
+            </li>
+            <li><a href="#" title="Прозрачность"><div class="butt-icon" style="background-image: url(img/image-controls/5.png);"></div>Прозрачность</a>
+                <div class="sub opacity-controller-wrap">
+                    <div class="procents">100%</div>
+                    <div id="object-opacity-controller"></div>
+                </div>
+            </li>
+            <li><a href="#" title="Порядок"><div class="butt-icon" style="background-image: url(img/image-controls/6.png);"></div>Порядок</a>
+
+            </li>
+            <li><a href="#" class="remove_obj" title="Удалить"><div class="butt-icon" style="background-image: url(img/image-controls/7.png);"></div>Удалить</a></li>
+        </ul>
+    <canvas id="main-canvas" width="500" height="500" data-scale="1"></canvas>
+</div>
+</body>
+</html>

@@ -1,0 +1,287 @@
+#canvas-wrap {
+    height: calc(100vh - 3.65vw);
+    margin: 0 0 0 6.35vw;
+    width: 93.65vw;
+    position: relative;
+    overflow: hidden;
+}
+
+#main-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #eeeeee;
+}
+
+
+/*panel-controls*/
+.panel-controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    list-style-type: none;
+    background-color: white;
+    border-radius: 3px;
+    color: #000000;
+    width: 36vw;
+    margin: 0;
+    padding: 0;
+    font-size: 0.7vw;
+    box-shadow: 0px 11px 27px 0px rgba(0, 0, 0, 0.2);
+    display: none;
+
+}
+
+.panel-controls:after {
+    clear: both;
+    display: block;
+    content: '';
+    width: 100%;
+}
+
+.panel-controls li {
+    float: left;
+    width: calc(100%/7);
+    margin: 0;
+    padding: 0.5vw 0;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+}
+
+.panel-controls li>a {
+    display: block;
+    border-right: 1px solid #000000;
+}
+.panel-controls li:last-child>a {
+    border-right: none;
+}
+
+.panel-controls .butt-icon {
+    max-width: 60%;
+    display: block;
+    height: 3.5vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 auto 3px;
+}
+
+/**/
+.panel-controls input {
+    line-height: normal;
+    font-size: inherit;
+    border: none;
+    /*border-bottom: 1px solid #222222;*/
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 3vw;
+    text-align: right;
+}
+.panel-controls li > .sub {
+    display: none;
+    position: absolute;
+    top: calc(100% + 3px);
+    left: 0;
+    padding: 0.5vw;
+    background-color: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0px 11px 27px 0px rgba(0, 0, 0, 0.2);
+}
+
+.panel-controls li.active > .sub {
+    display: block;
+
+}
+
+.panel-controls li > .sub:after {
+    clear: both;
+    display: block;
+    content: '';
+}
+
+.panel-controls li > .sub .left {
+    float: left;
+    max-width: 12vw;
+    /*max-height: 176px;*/
+}
+.left.svg-preview {
+    width: 100%;
+}
+.panel-controls li > .sub .right {
+    float: right;
+}
+/**/
+.sub.svg-color-select {
+    width: calc(356px + 14vw);
+}
+
+
+.active-el {
+    filter: url("#dropshadow");
+}
+.sub.svg-color-select .paliters-append {
+    width: 100%;
+    clear: both;
+}
+.sub.svg-color-select .paliters-append:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+.panel-controls .svg-color-select .paliters-append li {
+    float: left;
+    display: block;
+    width: calc(50% - 1vw);
+    text-align: left;
+    font-size: 1.11vw;
+    margin: 0.78vw auto 0;
+}
+.panel-controls .svg-color-select .paliters-append li .colors .color {
+    display: block;
+    float: left;
+    width: calc(100%/7);
+    height: calc((356px + 12vw)/14);
+}
+.panel-controls .svg-color-select .paliters-append li:nth-child(2n) {
+    float: right;
+}
+/**/
+/*opacity-controller-wrap*/
+.panel-controls li > .sub.opacity-controller-wrap {
+    box-sizing: border-box;
+    width: 22.4vw;
+    padding: 0.5vw 1vw 1.5vw !important;
+    left: -135%;
+    font-size: 1vw;
+    font-weight: 500;
+}
+
+.ui-slider {
+    margin: 3px auto 0;
+    height: 0.94vw;
+    box-sizing: border-box;
+    border: 1px solid #cfdce5;
+    border-radius: 0.47vw;
+}
+
+
+/*position-info and sizes-info*/
+.panel-controls li > .sub.position-info, .panel-controls li > .sub.sizes-info {
+    line-height: 2vw;
+    box-sizing: border-box;
+    padding: 1.8vw 0.5vw;
+    border-radius: 3px;
+    min-width: 20vw;
+    border: none;
+    margin: 0;
+    border-spacing: 0;
+    font-size: 1vw;
+    text-align: left;
+}
+.panel-controls li > .sub.sizes-info {
+    padding: 1.8vw 1vw;
+}
+.sub.sizes-info td:first-child {
+    width: 12vw;
+}
+.sub.position-info img {
+    max-width: 2vw;
+    max-height: 2vw;
+}
+.sub.position-info td:last-child, .sub.sizes-info  td:last-child {
+    width: 35%;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.2vw;
+}
+.sub.position-info td:first-child {
+    margin-left: 3px;
+}
+
+/*reflect-buttons*/
+.panel-controls li > .sub.reflect-buttons {
+    text-align: center;
+    width: 12.3vw;
+}
+
+.sub.reflect-buttons a {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 6vw;
+}
+.sub.reflect-buttons a img {
+    max-width: 60%;
+    display: block;
+    margin: 0 auto;
+}
+
+/*layers-order*/
+.sub.layers-order {
+    width: 23.3vw;
+    padding: 0;
+    box-sizing: border-box;
+    left: -13vw !important;
+    font-size: 1.2vw;
+}
+
+.sub.layers-order ul {
+    margin: 0 auto;
+    padding: 0;
+    max-height: 40vh;
+    overflow: auto;
+}
+
+.sub.layers-order li {
+    overflow: hidden;
+    display: block;
+    float: none;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0.5vw 0;
+    border-bottom: 1px solid #9a9a9a;
+    background-color: #ffffff;
+}
+
+.sub.layers-order  .ui-sortable-placeholder {
+    background-color: rgba(255, 217, 102, 0.51);
+    border: 2px solid #ffb366;
+    min-height: 20px;
+    box-sizing: border-box;
+    visibility: visible !important;
+}
+
+.sub.layers-order li:last-child {
+    border-bottom: none;
+}
+
+.sub.layers-order li img {
+    width: 16%;
+    vertical-align: middle;
+}
+
+.sub.layers-order li>img {
+    margin: 0 3% 0 0;
+}
+.sub.layers-order li .actions {
+    width: 34%;
+    text-align: right;
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+}
+.sub.layers-order li .actions img {
+    width: 50%;
+    float: left;
+}
+.sub.layers-order li .name {
+    width: 42%;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+}
